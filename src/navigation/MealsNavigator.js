@@ -11,16 +11,18 @@ import Colors from '../constants/Colors';
 const Stack = createStackNavigator();
 
 export default function MealsNavigator() {
-  const screenOptions = {
-    headerStyle: {
-      backgroundColor:
-        Platform.OS === 'android' ? Colors.primaryColor : 'white',
-    },
-    headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
-  };
-
   return (
-    <Stack.Navigator screenOptions={screenOptions}>
+    <Stack.Navigator
+      initialRouteName="Categories"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor:
+            Platform.OS === 'android' ? Colors.primaryColor : 'white',
+        },
+        headerTintColor:
+          Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+      }}
+    >
       <Stack.Screen
         name="Categories"
         component={CategoriesScreens}
