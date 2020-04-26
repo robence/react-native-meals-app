@@ -7,7 +7,7 @@
   "parser": "babel-eslint",
   "plugins": ["@react-native-community"],
   "rules": {
-    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": ["error", { "extensions": [".jsx"] }]
   },
   "settings": {
     "import/resolver": {
