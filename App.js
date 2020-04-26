@@ -5,8 +5,11 @@ import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
+import { enableScreens } from 'react-native-screens';
 
 import MealsNavigator from './src/navigation/MealsNavigator';
+
+enableScreens();
 
 const fetchFonts = () => {
   return Font.loadAsync({
