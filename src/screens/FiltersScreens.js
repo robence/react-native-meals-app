@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function CategoriesScreens() {
+export default function FiltersScreens() {
   return (
     <View style={styles.screen}>
-      <Text>The Categories Screen!</Text>
+      <Text>The categories</Text>
     </View>
   );
 }
