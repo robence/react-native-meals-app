@@ -1,13 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
-export default function CategoriesScreens({ navigation }) {
+export default function MealDetailScreens({ navigation }) {
+  console.log('navigation');
+  console.log(navigation);
+
   return (
     <View style={styles.screen}>
-      <Text>The Categories Screen!</Text>
+      <Text>The Meal Details Screen!</Text>
       <Button
-        title="Go to Meals!"
-        onPress={() => navigation.navigate('CategoryMeals')}
+        title="Go Back to Categories"
+        onPress={() => navigation.popToTop()}
       />
     </View>
   );
