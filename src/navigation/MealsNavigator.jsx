@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Platform } from 'react-native';
 import {
   CategoriesScreens,
-  CategoryMealsScreens,
+  CategoryMealScreens,
   MealDetailScreens,
 } from '../screens';
 import Colors from '../constants/Colors';
@@ -28,7 +28,7 @@ export default function MealsNavigator() {
         component={CategoriesScreens}
         options={{ title: 'Meal Categories' }}
       />
-      <Stack.Screen name="CategoryMeals" component={CategoryMealsScreens} />
+      <Stack.Screen name="CategoryMeals" component={CategoryMealScreens} />
       <Stack.Screen name="MealDetail" component={MealDetailScreens} />
     </Stack.Navigator>
   );
