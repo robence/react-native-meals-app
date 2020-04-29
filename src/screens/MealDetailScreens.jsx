@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
+
+import { Item, HeaderButtons } from 'react-navigation-header-buttons';
 import { MEALS } from '../data/dummy-data';
+import { HeaderButton } from '../components';
 
 export default function MealDetailScreens({ navigation, route }) {
   const { mealId } = route.params;
@@ -9,6 +12,17 @@ export default function MealDetailScreens({ navigation, route }) {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       title: selectedMeal.title,
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="Update count"
+            iconName="ios-star"
+            onPress={() => {
+              console.log('Mark as favorite');
+            }}
+          />
+        </HeaderButtons>
+      ),
     });
   }, [navigation, selectedMeal.title]);
 
