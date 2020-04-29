@@ -14,7 +14,7 @@ export default function CategoryMealScreens({ navigation, route }) {
     navigation.setOptions({
       title: selectedCategory.title,
     });
-  }, [navigation, categoryId, selectedCategory.title]);
+  }, [navigation, selectedCategory.title]);
 
   return (
     <View style={styles.screen}>
@@ -22,7 +22,12 @@ export default function CategoryMealScreens({ navigation, route }) {
         data={displayedMeals}
         style={styles.list}
         renderItem={({ item }) => (
-          <MealItem item={item} onSelectMeal={() => {}} />
+          <MealItem
+            item={item}
+            onSelectMeal={() =>
+              navigation.navigate('MealDetail', { mealId: item.id })
+            }
+          />
         )}
       />
     </View>
