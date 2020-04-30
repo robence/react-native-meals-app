@@ -1,15 +1,49 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+
+import { Ionicons } from '@expo/vector-icons';
+import { Platform } from 'react-native';
 import MealsNavigator from './MealsNavigator';
 import { FavoritesScreen } from '../screens';
+import Colors from '../constants/Colors';
 
-const Tab = createBottomTabNavigator();
+const Tab =
+  Platform.OS === 'ios'
+    ? createBottomTabNavigator()
+    : createMaterialBottomTabNavigator();
 
 export default function BottomTabNavigator() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Meals" component={MealsNavigator} />
-      <Tab.Screen name="Favorites" component={FavoritesScreen} />
+    <Tab.Navigator
+      // Material options
+      activeColor={Colors.white}
+      barStyle={{
+        backgroundColor: Colors.primaryColor,
+      }}
+      // iOS options
+      tabBarOptions={{
+        activeTintColor: Colors.primaryColor,
+      }}
+    >
+      <Tab.Screen
+        name="Meals"
+        component={MealsNavigator}
+        options={{
+          tabBarIcon: (tabInfo) => (
+            <Ionicons name="ios-restaurant" size={25} color={tabInfo.color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Favorites"
+        component={FavoritesScreen}
+        options={{
+          tabBarIcon: (tabInfo) => (
+            <Ionicons name="ios-star" size={25} color={tabInfo.color} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
