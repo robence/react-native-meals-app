@@ -1,18 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { MealList } from '../components';
+import { MEALS } from '../data/dummy-data';
 
-export default function FavoritesScreen() {
-  return (
-    <View style={styles.screen}>
-      <Text>The Favorites Screen!</Text>
-    </View>
-  );
+export default function FavoritesScreen({ navigation }) {
+  return <MealList data={MEALS} />;
 }
 
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+const styles = StyleSheet.create({});
