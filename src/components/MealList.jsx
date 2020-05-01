@@ -10,7 +10,7 @@ export default function MealList({ data }) {
     navigation.navigate('MealDetail', { mealId: item.id });
 
   return (
-    <View style={styles.screen}>
+    <View style={styles.listContainer}>
       <FlatList
         data={data}
         style={styles.list}
@@ -23,7 +23,7 @@ export default function MealList({ data }) {
 }
 
 const styles = StyleSheet.create({
-  screen: {
+  listContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
