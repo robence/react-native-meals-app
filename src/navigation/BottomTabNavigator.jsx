@@ -5,7 +5,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { Ionicons } from '@expo/vector-icons';
 import { Platform } from 'react-native';
 import MealsNavigator from './MealsNavigator';
-import { FavoritesScreen } from '../screens';
+import FavoritesNavigator from './FavoritesNavigator';
 import Colors from '../constants/Colors';
 
 const Tab =
@@ -37,7 +37,7 @@ export default function BottomTabNavigator() {
       />
       <Tab.Screen
         name="Favorites"
-        component={FavoritesScreen}
+        component={FavoritesNavigator}
         options={{
           tabBarIcon: (tabInfo) => (
             <Ionicons name="ios-star" size={25} color={tabInfo.color} />
