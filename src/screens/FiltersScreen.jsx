@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function FiltersScreens() {
+export default function FiltersScreen() {
   return (
     <View style={styles.screen}>
       <Text>The categories</Text>

@@ -6,7 +6,7 @@ import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import { enableScreens } from 'react-native-screens';
 
-import BottomTabNavigator from './src/navigation';
+import MainNavigator from './src/navigation';
 
 enableScreens();
 
@@ -30,7 +30,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <BottomTabNavigator />
+      <MainNavigator />
     </NavigationContainer>
   );
 }
