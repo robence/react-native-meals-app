@@ -6,6 +6,7 @@ import {
   MealDetailScreens,
 } from '../screens';
 import defaultScreenOptions from './defaultOptions';
+import { HeaderMenu } from '../components';
 
 const Stack = createStackNavigator();
 
@@ -18,7 +19,10 @@ export default function MealsStackNavigator() {
       <Stack.Screen
         name="Categories"
         component={CategoriesScreens}
-        options={{ title: 'Meal Categories' }}
+        options={({ navigation }) => ({
+          title: 'Meal Categories',
+          headerLeft: () => <HeaderMenu />,
+        })}
       />
       <Stack.Screen name="CategoryMeals" component={CategoryMealScreens} />
       <Stack.Screen name="MealDetail" component={MealDetailScreens} />
