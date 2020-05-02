@@ -5,7 +5,7 @@ import defaultScreenOptions from './defaultOptions';
 
 const Stack = createStackNavigator();
 
-export default function FavoritesNavigator() {
+export default function FavoritesStackNavigator() {
   return (
     <Stack.Navigator
       initialRouteName="FavoriteMeals"

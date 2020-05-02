@@ -9,7 +9,7 @@ import defaultScreenOptions from './defaultOptions';
 
 const Stack = createStackNavigator();
 
-export default function MealsNavigator() {
+export default function MealsStackNavigator() {
   return (
     <Stack.Navigator
       initialRouteName="Categories"
