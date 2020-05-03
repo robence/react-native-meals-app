@@ -24,6 +24,9 @@ export default function BottomTabNavigator() {
       // iOS options
       tabBarOptions={{
         activeTintColor: Colors.primaryColor,
+        labelStyle: {
+          fontFamily: 'open-sans',
+        },
       }}
     >
       <Tab.Screen

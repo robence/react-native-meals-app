@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import {
   createDrawerNavigator,
@@ -8,32 +9,30 @@ import {
 
 import BottomTabNavigator from './BottomTabNavigator';
 import FiltersStackNavigator from './FiltersStackNavigator';
+import Colors from '../constants/Colors';
 
 const Drawer = createDrawerNavigator();
 
-// /* eslint-disable */
-// function CustomDrawerContent(props) {
-//   console.log('props');
-//   console.log(props);
-
-//   return null;
-
-//   return (
-//     <DrawerContentScrollView {...props}>
-//       <DrawerItemList {...props} />
-//       {/* <DrawerItem label="Help" onPress={() => {}} /> */}
-//     </DrawerContentScrollView>
-//   );
-// }
+const Menu = (props) => {
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem label="Help" onPress={() => {}} />
+    </DrawerContentScrollView>
+  );
+};
 
 export default function MyDrawer() {
   return (
     <Drawer.Navigator
       initialRouteName="Tabs"
-      // TODO: find out why runs out of memory
-      // drawerContent={(props) => {
-      //   console.log(props);
-      // }}
+      drawerContent={(props) => <Menu {...props} />}
+      drawerContentOptions={{
+        activeTintColor: Colors.accentColor,
+        labelStyle: {
+          fontFamily: 'open-sans',
+        },
+      }}
     >
       <Drawer.Screen
         name="Tabs"

@@ -6,15 +6,16 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
+import MealDetail from './MealDetail';
 
 export default function MealItem({ item, onSelectMeal }) {
-  const { title, duration, complexity, affordability, imageUrl } = item;
+  const { title, imageUrl } = item;
 
   return (
     <View style={styles.mealItem}>
       <TouchableOpacity onPress={onSelectMeal}>
         <View>
-          <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
+          <View style={styles.mealHeader}>
             <ImageBackground source={{ uri: imageUrl }} style={styles.bgImage}>
               <View style={styles.titleContainer}>
                 <Text style={styles.title} numberOfLines={1}>
@@ -23,11 +24,7 @@ export default function MealItem({ item, onSelectMeal }) {
               </View>
             </ImageBackground>
           </View>
-          <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-            <Text>{duration}m</Text>
-            <Text>{complexity.toUpperCase()}</Text>
-            <Text>{affordability.toUpperCase()}</Text>
-          </View>
+          <MealDetail item={item} containerStyle={styles.mealDetails} />
         </View>
       </TouchableOpacity>
     </View>
@@ -60,13 +57,11 @@ const styles = StyleSheet.create({
 
     textAlign: 'center',
   },
-  mealRow: {
-    flexDirection: 'row',
-  },
   mealHeader: {
     height: '85%',
+    flexDirection: 'row',
   },
-  mealDetail: {
+  mealDetails: {
     height: '15%',
     paddingHorizontal: 10,
     justifyContent: 'space-between',

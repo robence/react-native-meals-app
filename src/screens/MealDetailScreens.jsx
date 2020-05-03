@@ -1,9 +1,17 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { ScrollView, Image, View, Text, StyleSheet } from 'react-native';
 
 import { Item, HeaderButtons } from 'react-navigation-header-buttons';
 import { MEALS } from '../data/dummy-data';
-import { HeaderButton } from '../components';
+import { HeaderButton, MealDetail, DefaultText } from '../components';
+
+const ListItem = ({ children }) => {
+  return (
+    <View style={styles.listItem}>
+      <DefaultText>{children}</DefaultText>
+    </View>
+  );
+};
 
 export default function MealDetailScreens({ navigation, route }) {
   const { mealId } = route.params;
@@ -27,20 +35,40 @@ export default function MealDetailScreens({ navigation, route }) {
   }, [navigation, selectedMeal.title]);
 
   return (
-    <View style={styles.screen}>
-      <Text>The Meal Details Screen!</Text>
-      <Button
-        title="Go Back to Categories"
-        onPress={() => navigation.popToTop()}
-      />
-    </View>
+    <ScrollView>
+      <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
+      <MealDetail item={selectedMeal} containerStyle={styles.details} />
+      <Text style={styles.title}>Ingredients</Text>
+      {selectedMeal.ingredients.map((ingredient) => (
+        <ListItem key={ingredient}>{ingredient}</ListItem>
+      ))}
+      <Text style={styles.title}>Steps</Text>
+      {selectedMeal.steps.map((step) => (
+        <ListItem key={step}>{step}</ListItem>
+      ))}
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  image: {
+    width: '100%',
+    height: 200,
+  },
+  details: {
+    padding: 15,
+    justifyContent: 'space-around',
+  },
+  title: {
+    fontFamily: 'open-sans-bold',
+    fontSize: 22,
+    textAlign: 'center',
+  },
+  listItem: {
+    marginVertical: 10,
+    marginHorizontal: 20,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    padding: 10,
   },
 });
