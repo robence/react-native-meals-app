@@ -27,6 +27,7 @@ export default function MyDrawer() {
     <Drawer.Navigator
       initialRouteName="Tabs"
       drawerContent={(props) => <Menu {...props} />}
+      edgeWidth={100}
       drawerContentOptions={{
         activeTintColor: Colors.accentColor,
         labelStyle: {
