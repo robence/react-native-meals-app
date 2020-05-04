@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Switch, Platform } from 'react-native';
+import { Item, HeaderButtons } from 'react-navigation-header-buttons';
 import Colors from '../constants/Colors';
+
+import { HeaderButton } from '../components';
 
 const FilterSwitch = ({ label, value, onValueChange }) => {
   return (
@@ -16,11 +19,37 @@ const FilterSwitch = ({ label, value, onValueChange }) => {
   );
 };
 
-export default function FiltersScreen() {
+export default function FiltersScreen({ navigation }) {
   const [isGlutenFree, setIsGlutenFree] = useState(false);
   const [isLactoseFree, setIsLactoseFree] = useState(false);
   const [isVegan, setIsVegan] = useState(false);
   const [isVegetarian, setIsVegetarian] = useState(false);
+
+  const saveFilters = React.useCallback(() => {
+    const appliedFilters = {
+      isGlutenFree,
+      isLactoseFree,
+      isVegan,
+      isVegetarian,
+    };
+    console.log(appliedFilters);
+  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="Update count"
+            iconName="ios-save"
+            onPress={() => {
+              saveFilters();
+            }}
+          />
+        </HeaderButtons>
+      ),
+    });
+  }, [navigation, saveFilters]);
 
   return (
     <View style={styles.screen}>
