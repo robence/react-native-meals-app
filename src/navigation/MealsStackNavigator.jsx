@@ -25,7 +25,15 @@ export default function MealsStackNavigator() {
         })}
       />
       <Stack.Screen name="CategoryMeals" component={CategoryMealScreens} />
-      <Stack.Screen name="MealDetail" component={MealDetailScreens} />
+      <Stack.Screen
+        name="MealDetail"
+        component={MealDetailScreens}
+        options={({ route }) => {
+          return {
+            title: route.params.mealTitle,
+          };
+        }}
+      />
     </Stack.Navigator>
   );
 }

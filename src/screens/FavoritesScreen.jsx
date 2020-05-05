@@ -1,10 +1,9 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { MealList } from '../components';
-import { MEALS } from '../data/dummy-data';
 
 export default function FavoritesScreen() {
-  const favMealIds = ['m1', 'm2'];
-  const favoriteMeals = MEALS.filter(({ id }) => favMealIds.includes(id));
+  const favoriteMeals = useSelector((state) => state.meals.favoriteMeals);
 
   return <MealList data={favoriteMeals} />;
 }

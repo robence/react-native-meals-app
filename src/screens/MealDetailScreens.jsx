@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, Image, View, Text, StyleSheet } from 'react-native';
 
 import { Item, HeaderButtons } from 'react-navigation-header-buttons';
-import { MEALS } from '../data/dummy-data';
+import { useSelector } from 'react-redux';
 import { HeaderButton, MealDetail, DefaultText } from '../components';
 
 const ListItem = ({ children }) => {
@@ -15,11 +15,12 @@ const ListItem = ({ children }) => {
 
 export default function MealDetailScreens({ navigation, route }) {
   const { mealId } = route.params;
-  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+  const meals = useSelector((state) => state.meals.meals);
+  const selectedMeal = meals.find((meal) => meal.id === mealId);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      title: selectedMeal.title,
       headerRight: () => (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item
@@ -32,7 +33,7 @@ export default function MealDetailScreens({ navigation, route }) {
         </HeaderButtons>
       ),
     });
-  }, [navigation, selectedMeal.title]);
+  }, [navigation]);
 
   return (
     <ScrollView>

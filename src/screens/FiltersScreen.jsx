@@ -32,7 +32,6 @@ export default function FiltersScreen({ navigation }) {
       isVegan,
       isVegetarian,
     };
-    console.log(appliedFilters);
   }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
 
   React.useLayoutEffect(() => {

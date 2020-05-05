@@ -5,8 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import { enableScreens } from 'react-native-screens';
-
+import { Provider } from 'react-redux';
 import MainNavigator from './src/navigation';
+import store from './store';
 
 enableScreens();
 
@@ -29,8 +30,10 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <MainNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <MainNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 }

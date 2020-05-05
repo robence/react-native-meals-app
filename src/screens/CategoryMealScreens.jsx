@@ -1,12 +1,16 @@
 import React from 'react';
-import { CATEGORIES, MEALS } from '../data/dummy-data';
+import { useSelector } from 'react-redux';
+
+import { CATEGORIES } from '../data/dummy-data';
 import { MealList } from '../components';
 
 export default function CategoryMealScreens({ navigation, route }) {
   const { categoryId } = route.params;
 
+  const availableMeals = useSelector((state) => state.meals.filteredMeals);
+
   const selectedCategory = CATEGORIES.find(({ id }) => categoryId === id);
-  const displayedMeals = MEALS.filter((meal) =>
+  const displayedMeals = availableMeals.filter((meal) =>
     meal.categoryIds.includes(categoryId)
   );
 

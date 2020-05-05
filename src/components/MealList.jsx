@@ -6,8 +6,12 @@ import MealItem from './MealItem';
 export default function MealList({ data }) {
   const navigation = useNavigation();
 
-  const onSelectMeal = (item) =>
-    navigation.navigate('MealDetail', { mealId: item.id });
+  const onSelectMeal = (item) => {
+    navigation.navigate('MealDetail', {
+      mealId: item.id,
+      mealTitle: item.title,
+    });
+  };
 
   return (
     <View style={styles.listContainer}>
