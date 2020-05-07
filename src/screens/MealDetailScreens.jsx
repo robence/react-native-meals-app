@@ -18,6 +18,10 @@ export default function MealDetailScreens({ navigation, route }) {
   const { mealId } = route.params;
 
   const meals = useSelector((state) => state.meals.meals);
+  const isFavorite = useSelector((state) =>
+    state.meals.favoriteMeals.some((meal) => meal.id === mealId)
+  );
+
   const selectedMeal = meals.find((meal) => meal.id === mealId);
 
   const dispatch = useDispatch(toggleFavorite());
@@ -32,13 +36,13 @@ export default function MealDetailScreens({ navigation, route }) {
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item
             title="Update count"
-            iconName="ios-star"
+            iconName={isFavorite ? 'ios-star' : 'ios-star-outline'}
             onPress={toggleFavoriteHandler}
           />
         </HeaderButtons>
       ),
     });
-  }, [navigation, toggleFavoriteHandler]);
+  }, [isFavorite, navigation, toggleFavoriteHandler]);
 
   return (
     <ScrollView>

@@ -1,15 +1,19 @@
 import React from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 import MealItem from './MealItem';
 
 export default function MealList({ data }) {
   const navigation = useNavigation();
+  const favoriteMeals = useSelector((state) => state.meals.favoriteMeals);
 
   const onSelectMeal = (item) => {
+    const isFavorite = favoriteMeals.some((meal) => meal.id === item.id);
     navigation.navigate('MealDetail', {
       mealId: item.id,
       mealTitle: item.title,
+      isFavorite,
     });
   };
 
