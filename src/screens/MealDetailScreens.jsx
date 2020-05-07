@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { ScrollView, Image, View, Text, StyleSheet } from 'react-native';
 
 import { Item, HeaderButtons } from 'react-navigation-header-buttons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButton, MealDetail, DefaultText } from '../components';
+import { toggleFavorite } from '../ducks/meals';
 
 const ListItem = ({ children }) => {
   return (
@@ -19,6 +20,12 @@ export default function MealDetailScreens({ navigation, route }) {
   const meals = useSelector((state) => state.meals.meals);
   const selectedMeal = meals.find((meal) => meal.id === mealId);
 
+  const dispatch = useDispatch(toggleFavorite());
+
+  const toggleFavoriteHandler = useCallback(() => {
+    dispatch(toggleFavorite(mealId));
+  }, [dispatch, mealId]);
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -26,14 +33,12 @@ export default function MealDetailScreens({ navigation, route }) {
           <Item
             title="Update count"
             iconName="ios-star"
-            onPress={() => {
-              console.log('Mark as favorite');
-            }}
+            onPress={toggleFavoriteHandler}
           />
         </HeaderButtons>
       ),
     });
-  }, [navigation]);
+  }, [navigation, toggleFavoriteHandler]);
 
   return (
     <ScrollView>
